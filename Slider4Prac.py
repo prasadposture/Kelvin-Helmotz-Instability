@@ -22,11 +22,11 @@ with a:
     e=int(e)
 with b:
     fig, ax = plt.subplots()
-    ax.scatter([t[s],t[e]],[Ey[s],Ey[e]], color='r')
+    ax.scatter([t[s],t[e]],[Ey[s],Ey[e]], color='orange')
     params, covt = curve_fit(function,t[s:e+1],Ey[s:e+1] )
     pred_Ey = function(t,params[0],params[1])
     ax.plot(t,Ey)
-    ax.plot(t[s:e+1], pred_Ey[s:e+1],'r',label=f"B: {params[1]}")
+    ax.plot(t[s:e+1], pred_Ey[s:e+1],color='orange',label=f"B: {params[1]}")
     ax.set_xlabel('t')
     ax.set_ylabel('Ey (log scale)')
     ax.set_yscale('log')
