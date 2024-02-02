@@ -11,9 +11,9 @@ def function(t,a,b):
 with a:
     try:
         file = st.file_uploader("upload the file here:")
+        df = np.genfromtxt (file)
     except Exception as e:
-        file = 'kh0_5.dat'
-    df = np.genfromtxt (file)
+        df = np.genfromtxt ('kh0_5.dat')
     t = df[:,0]
     Ey = df[:,2]
     s=st.slider(label="Starting Point",min_value=0, max_value=len(t), step=1, value=6)
