@@ -13,24 +13,27 @@ with a:
         file = st.file_uploader("upload the file here:")
         df = np.genfromtxt (file)
     except Exception as e:
-        df = np.genfromtxt ('kh0_5.dat')
+        file = 'kh0_5.dat'
+        df = np.genfromtxt(file)
     t = df[:,0]
     Ey = df[:,2]
     s=st.slider(label="Starting Point",min_value=0, max_value=len(t), step=1, value=6)
     s=int(s)
     e=st.slider(label="Ending Point",min_value=0, max_value=len(t), step=1, value=12)
     e=int(e)
+    k = st.text_input("Value of K:")
 with b:
     fig, ax = plt.subplots()
-    ax.scatter([t[s],t[e]],[Ey[s],Ey[e]], color='magenta')
+    ax.scatter([t[s],t[e]],[Ey[s],Ey[e]], color='r')
     params, covt = curve_fit(function,t[s:e+1],Ey[s:e+1] )
     pred_Ey = function(t,params[0],params[1])
     ax.plot(t,Ey)
-    ax.plot(t[s:e+1], pred_Ey[s:e+1],color='magenta',label=f"B: {params[1]}")
+    ax.plot(t[s:e+1], pred_Ey[s:e+1],'r',label=f"B: {params[1]}")
     ax.set_xlabel('t')
     ax.set_ylabel('Ey (log scale)')
     ax.set_yscale('log')
     ax.legend()
+    ax.set_title(f"Growth Factor for k={k}")
     st.pyplot(fig)
     st.write("# Value of b:",params[1])
 
