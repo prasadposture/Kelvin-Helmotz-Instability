@@ -7,7 +7,7 @@ st.set_page_config(page_title="KH Instability",layout='wide',page_icon="👀")
 st.title("Growth Factor Calculator")
 a,b = st.columns(2)
 def function(t,a,b):
-    return a*np.exp(2*b*t)
+    return a*np.exp(b*t)
 with a:
     try:
         file = st.file_uploader("upload the file here:")
